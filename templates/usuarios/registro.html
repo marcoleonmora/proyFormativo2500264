@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- BLOQUE PRINCIPAL -->
+{% block content %}
+<div class="py-5 text-center">
+    <h2>{{ nombreForm }}</h2>
+</div>
+
+<hr class="my-4">
+<div class="col-12">
+    <form action="{% url 'registro' %}" method="post">
+        {% csrf_token %}
+
+        <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="correo@ejemplo.com">
+            <div class="invalid-feedback">
+                Por favor ingrese un correo válido.
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="numeric" class="form-control" name="phone_number" id="telefono" placeholder="correo@ejemplo.com">
+            <div class="invalid-feedback">
+                Por favor ingrese su numero de teléfono.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="">
+            <div class="invalid-feedback">
+                Por favor ingrese una Contraseña con al menos ocho caracteres.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="">
+        </div>
+
+        <div class="col-12">
+            <label for="tipoUsuario" class="form-label">Tipo de tipoUsuario</label>
+            <select class="form-control" name="tipoUsuario" id="tipoUsuario">
+                <option value="1">Administrador del Sistema</option>
+                <option value="2" selected>Gerente de Finca</option>
+                <option value="3">Asistente de Finca</option>
+            </select>
+
+        </div>
+
+        <input class="w-100 btn boton1 btn-lg" type="submit" value = "Guardar datos">
+    </form>
+</div>
+{% endblock %}
+<!-- FIN BLOQUE PRINCIPAL -->

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- BLOQUE PRINCIPAL -->
+{% block content %}
+<div class="py-5 text-center">
+    <h2>Insumos</h2>
+</div>
+
+<form action="{% url 'insumos' %}" method="post">
+    {% csrf_token %}
+
+    <div class="row g-3">
+       
+        <div class="col-12 form-group">
+            <label for="categ_id" class="form-label">Categoria de Insumo</label>
+            <select name="categ_id" id="categ_id" class="form-select" onclick="filtrarInsumos()">
+                <option value="0">....</option>
+                {% for categ in categorias %}
+                <option value="{{categ.id}}">{{categ.descripCategMaterial}}</option>
+                {% endfor %}
+            </select>
+        </div>
+       
+        <div class="col-12 form-group">
+            <label for="unidad_id" class="form-label">Unidad de medida</label>
+            <select name="unidad_id" id="unidad_id" class="form-select" onchange="filtrarInsumos()">
+                <option value="0">....</option>
+                {% for unidad in unidades %}
+                <option value="{{unidad.id}}">{{unidad.descripUnidadMedida}}</option>
+                {% endfor %}
+            </select>
+        </div>
+       
+        <div class="col-12 form-group">
+            <label for="insumo_id" class="form-label">Insumos</label>
+            <select name="insumo_id" id="insumo_id" class="form-select" onchange="mostrarDescrip()">
+                <option value="0" data-unidad="0"  data-categ="0">....</option>
+                {% for insumo in insumos %}
+                <option value="{{insumo.id}}" data-unidad="{{insumo.unidadMedida__id}}"  data-categ="{{insumo.categMaterial__id}}" >{{insumo.descripInsumo}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-12 form-group">
+            <label for="descripInsumo" class="form-label">Descripción</label>
+            <input type="text" name="descripInsumo" id="descripInsumo" class="form-control">
+        </div>
+       
+        <br>
+        <input type="submit" class="w-100 btn boton1 btn-lg" value="Guardar datos">
+    </div>
+</form>
+{% endblock %}
+<!-- FIN BLOQUE PRINCIPAL -->
