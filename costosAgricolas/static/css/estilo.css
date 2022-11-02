@@ -9,11 +9,12 @@
     --boton2: SlateGray;
     --boton3: Goldenrod;
 }
-
 body{ 
     background-color: var(--fondo1); 
-    color: var(--color-text1);}
-
+    color: var(--color-text1);
+    /*
+    */
+}
 #contenedor{ 
     background-color: var(--fondo2);
     padding: 3%;
@@ -23,7 +24,7 @@ body{
     background-image: url('../img/agricolas.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
-    color: var(--color-text2);
+/*    color: var(--color-text2);*/
     margin: 0;
 }
 
@@ -45,7 +46,7 @@ body{
     text-align: center !important;
 }
 
-/********* BOTONES Y ENLACES *****************/
+/********* BOTONES Y ENLACES *****************
 .nav-link, a, #tituloPie, .dropdown-item{
     color: var(--color-text1);
 }
@@ -76,5 +77,10 @@ a:hover{color: var(--color-Select);}
 
 .mensaje {
     background-color: var(--fondo3);
+}
+
+/* texto con el noombre del usuario */
+.usuario{
+    color: var(--color-text2);
 }
 

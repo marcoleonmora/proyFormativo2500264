@@ -1,3 +1,12 @@
+<div class="col-12" id="nombreUsuario">
+    
+    {% if user.id is None %}
+    <h6 class="usuario">visitante</h6>
+    {% else %}
+    <h6 class="usuario">{{ user.first_name }} - {{user.rol}} </h6>
+    {% endif %}
+    
+</div>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <!--<a class="navbar-brand" href="#">Menu:</a>-->
@@ -14,20 +23,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
-                </li>
+
+                {% if user.id is None %}
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Ingresar</a>
+                    <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+                </li>
+                {% else %}
+                
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cambiar contraseña</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Salir</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Salir</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -35,6 +49,8 @@
                         Opciones
                     </a>
                     <ul class="dropdown-menu">
+
+                        {% if user.rol == '2' %}
                         <li><a class="dropdown-item" href="#">Usuarios</a></li>
                         <li><a class="dropdown-item" href="{% url 'categHoras' %}">Categorias de horas</a></li>
                         <li><a class="dropdown-item" href="#">Tipos de Trabajo</a></li>
@@ -45,9 +61,8 @@
                         <li><a class="dropdown-item" href="#">Equipos y Herramientas</a></li>
                         <li><a class="dropdown-item" href="#">Productos</a></li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        {% elif user.rol == '1' %}
+
                         <li><a class="dropdown-item" href="#">Asistentes de finca</a></li>
                         <li><a class="dropdown-item" href="#">Proveedores</a></li>
                         <li><a class="dropdown-item" href="#">Insumos</a></li>
@@ -59,9 +74,8 @@
                         <li><a class="dropdown-item" href="#">Insumos</a></li>
                         <li><a class="dropdown-item" href="#">Productos</a></li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        {% else %}
+
                         <li><a class="dropdown-item" href="#">Compra de Equipo y Herramienta</a></li>
                         <li><a class="dropdown-item" href="#">Compra de Insumos</a></li>
                         <li><a class="dropdown-item" href="#">Lotes</a></li>
@@ -73,9 +87,12 @@
                         <li><a class="dropdown-item" href="#">Registrar Recoleccion de Cosecha</a></li>
                         <li><a class="dropdown-item" href="#">Registrar Venta de Productos</a></li>
 
+                        {% endif %}
+
                         
                     </ul>
                 </li>
+                {% endif %}
                 <!--                            
                     <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>

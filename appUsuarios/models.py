@@ -46,7 +46,7 @@ class Usuarios(AbstractBaseUser):
     email = models.CharField(max_length=100, unique=True)
     phone_number = models.CharField(max_length=50)
     finca = models.ForeignKey(Finca, on_delete=models.CASCADE, null=True)
-    rol = models.CharField(max_length=2, default='0')
+    rol = models.CharField(max_length=2, default='3')
 
     #campos atributos predefinidos en Django
     date_joined = models.DateTimeField(auto_now_add=True)
