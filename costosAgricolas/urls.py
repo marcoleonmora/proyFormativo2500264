@@ -12,5 +12,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('usuarios/', include('appUsuarios.urls')),
     path('apAdmin/', include('appAdmin.urls')),
+    path('apGerente/', include('appGerente.urls')),
 
 ]
